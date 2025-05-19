@@ -1,37 +1,44 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Brush, Soap, ShowerHead, WashingMachine, ArrowRight } from "lucide-react";
+import { Broom, House, Bed, Kitchen, Archive } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const servicesList = [
   {
     id: 1,
-    title: "Residential Cleaning",
-    description: "Comprehensive cleaning services for homes of all sizes, from apartments to large houses.",
-    icon: <ShowerHead className="h-8 w-8" />,
-    features: ["Deep cleaning", "Regular maintenance", "Move in/out cleaning", "Custom cleaning plans"],
+    title: "New House Cleaning",
+    description: "Comprehensive cleaning services for newly built or renovated homes before you move in.",
+    icon: <House className="h-8 w-8" />,
+    features: ["Deep cleaning", "Dust removal", "Sanitization", "Interior windows"],
   },
   {
     id: 2,
-    title: "Commercial Cleaning",
-    description: "Professional cleaning solutions for offices, retail spaces, and commercial properties.",
-    icon: <Brush className="h-8 w-8" />,
-    features: ["Office sanitization", "Floor maintenance", "Window cleaning", "Restroom sanitation"],
+    title: "Apartment Cleaning",
+    description: "Thorough cleaning services for apartments of all sizes to keep your living space fresh and tidy.",
+    icon: <Bed className="h-8 w-8" />,
+    features: ["Living areas", "Bedrooms", "Bathrooms", "Common spaces"],
   },
   {
     id: 3,
-    title: "Specialized Cleaning",
-    description: "Expert cleaning for specific needs including post-construction, carpet, and upholstery.",
-    icon: <Soap className="h-8 w-8" />,
-    features: ["Carpet cleaning", "Upholstery cleaning", "Post-construction", "Event cleanup"],
+    title: "Kitchen Cleaning",
+    description: "Specialized cleaning for the heart of your home, focusing on appliances, surfaces, and organization.",
+    icon: <Kitchen className="h-8 w-8" />,
+    features: ["Appliance cleaning", "Cabinet organization", "Counter sanitizing", "Floor deep cleaning"],
   },
   {
     id: 4,
-    title: "Subscription Plans",
+    title: "Pack-in/Pack-out Cleaning",
+    description: "Specialized cleaning for move-in and move-out situations to ensure a smooth transition.",
+    icon: <Archive className="h-8 w-8" />,
+    features: ["Move-in preparation", "Move-out cleaning", "Landlord requirements", "Deposit-friendly cleaning"],
+  },
+  {
+    id: 5,
+    title: "Weekly Cleaning Services",
     description: "Regular cleaning schedules with discounted rates and priority scheduling.",
-    icon: <WashingMachine className="h-8 w-8" />,
-    features: ["Weekly service", "Bi-weekly service", "Monthly service", "Customizable frequency"],
+    icon: <Broom className="h-8 w-8" />,
+    features: ["Regular maintenance", "Custom frequency options", "Consistent cleaning team", "Flexible scheduling"],
   },
 ];
 
@@ -44,11 +51,11 @@ const Services = () => {
           <h2 className="text-3xl md:text-4xl font-bold mt-2 mb-4">Professional Cleaning Services</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
             We provide top-quality cleaning services tailored to your specific needs. 
-            From residential to commercial spaces, our professional team ensures exceptional results.
+            From new houses to apartments, kitchens, and regular maintenance - our professional team ensures exceptional results.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {servicesList.map((service) => (
             <ServiceCard key={service.id} service={service} />
           ))}
@@ -56,8 +63,7 @@ const Services = () => {
         
         <div className="mt-12 text-center">
           <Button className="gradient-bg gap-2">
-            View All Services
-            <ArrowRight className="h-4 w-4" />
+            Get a Cleaning Quote
           </Button>
         </div>
       </div>

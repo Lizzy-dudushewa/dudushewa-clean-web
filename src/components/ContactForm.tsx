@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -22,7 +21,7 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
-import { Calendar, Mail, MapPin, Phone } from "lucide-react";
+import { Calendar, Mail, MapPin, Phone, Whatsapp } from "lucide-react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -95,25 +94,27 @@ const ContactForm = () => {
                 <ContactInfo 
                   icon={<Phone size={20} />}
                   title="Phone"
-                  details={["(555) 123-4567"]}
+                  details={["09027507279", "09168078539"]}
                 />
                 
                 <ContactInfo 
                   icon={<Mail size={20} />}
                   title="Email"
-                  details={["info@dudushewa.com", "support@dudushewa.com"]}
+                  details={["elizabethannah6@gmail.com"]}
                 />
                 
                 <ContactInfo 
-                  icon={<MapPin size={20} />}
-                  title="Address"
-                  details={["123 Cleaning Street", "City, State 12345"]}
+                  icon={<Whatsapp size={20} />}
+                  title="WhatsApp"
+                  details={[
+                    <a href="https://wa.me/+2349027507279" className="hover:text-cleaning-primary">Click to chat</a>
+                  ]}
                 />
                 
                 <ContactInfo 
                   icon={<Calendar size={20} />}
                   title="Working Hours"
-                  details={["Monday-Friday: 8AM - 6PM", "Saturday: 9AM - 4PM", "Sunday: Closed"]}
+                  details={["Monday-Saturday: 8AM - 6PM", "Sunday: By appointment only"]}
                 />
               </div>
             </div>
@@ -163,7 +164,7 @@ const ContactForm = () => {
                         <FormItem>
                           <FormLabel>Phone Number</FormLabel>
                           <FormControl>
-                            <Input placeholder="(555) 123-4567" {...field} />
+                            <Input placeholder="09027507279" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -183,10 +184,11 @@ const ContactForm = () => {
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="residential">Residential Cleaning</SelectItem>
-                              <SelectItem value="commercial">Commercial Cleaning</SelectItem>
-                              <SelectItem value="specialized">Specialized Cleaning</SelectItem>
-                              <SelectItem value="subscription">Subscription Plans</SelectItem>
+                              <SelectItem value="newhouse">New House Cleaning</SelectItem>
+                              <SelectItem value="apartment">Apartment Cleaning</SelectItem>
+                              <SelectItem value="kitchen">Kitchen Cleaning</SelectItem>
+                              <SelectItem value="packinout">Pack-in/Pack-out Cleaning</SelectItem>
+                              <SelectItem value="weekly">Weekly Cleaning Services</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -231,7 +233,7 @@ const ContactForm = () => {
 interface ContactInfoProps {
   icon: React.ReactNode;
   title: string;
-  details: string[];
+  details: (string | JSX.Element)[];
 }
 
 const ContactInfo = ({ icon, title, details }: ContactInfoProps) => {
