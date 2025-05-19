@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Brush as BroomIcon } from 'lucide-react';
+import { Brush as BroomIcon, WhatsappIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
@@ -47,7 +47,18 @@ const Navbar = () => {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-6">
           <NavLinks className="flex space-x-6" />
-          <Button className="gradient-bg">Get a Quote</Button>
+          <div className="flex items-center gap-4">
+            <a 
+              href="https://wa.me/2349027507279" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-cleaning-primary hover:text-cleaning-accent"
+            >
+              <WhatsappIcon className="h-5 w-5" />
+              <span>09027507279</span>
+            </a>
+            <Button className="gradient-bg">Get a Quote</Button>
+          </div>
         </div>
       </div>
 
@@ -55,6 +66,15 @@ const Navbar = () => {
       <div className={cn("md:hidden", isOpen ? "block" : "hidden")}>
         <div className="px-4 pt-2 pb-4 space-y-1 bg-white shadow-md">
           <NavLinks className="flex flex-col space-y-2" />
+          <a 
+            href="https://wa.me/2349027507279" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-cleaning-primary hover:text-cleaning-accent mt-3"
+          >
+            <WhatsappIcon className="h-5 w-5" />
+            <span>WhatsApp: 09027507279</span>
+          </a>
           <Button className="gradient-bg w-full mt-4">Get a Quote</Button>
         </div>
       </div>
