@@ -1,11 +1,41 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Brush as BroomIcon, Home as House, Bed, UtensilsCrossed as KitchenIcon, Archive, WhatsappIcon } from "lucide-react";
+import { Brush as BroomIcon, Home as House, Bed, UtensilsCrossed as KitchenIcon, Archive, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
-const servicesList = [
+// Define type for pricing property to handle both formats
+type PricingItem = {
+  property: string;
+  price: string;
+} | {
+  service: string;
+  price: string;
+};
+
+// Define the service interface
+interface ServiceType {
+  id: number;
+  title: string;
+  description: string;
+  icon: JSX.Element;
+  features: string[];
+  pricing?: PricingItem[] | {
+    mainland: PricingItem[];
+    island: PricingItem[];
+  };
+  note?: string;
+  classicPricing?: string[];
+  classicNote?: string;
+  houseCleaning?: {
+    frequency: string;
+    price: string;
+  }[];
+  houseNote?: string;
+}
+
+const servicesList: ServiceType[] = [
   {
     id: 1,
     title: "New House Cleaning",
@@ -94,8 +124,8 @@ const servicesList = [
     icon: <BroomIcon className="h-8 w-8" />,
     features: ["Regular maintenance", "Custom frequency options", "Consistent cleaning team", "Flexible scheduling"],
     pricing: [
-      { service: "MON-FRI", price: "₦90,000" },
-      { service: "MON-SATURDAY", price: "₦100,000" },
+      { property: "MON-FRI", price: "₦90,000" },
+      { property: "MON-SATURDAY", price: "₦100,000" },
     ],
     note: "Excluding V.A.T. Cleaning hours are 7 am to 5 pm, but this can be flexible.",
     houseCleaning: [
@@ -136,7 +166,7 @@ const Services = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-cleaning-primary hover:text-cleaning-accent"
             >
-              <WhatsappIcon className="h-5 w-5" />
+              <MessageCircle className="h-5 w-5" />
               <span>09027507279</span>
             </a>
             <a 
@@ -145,7 +175,7 @@ const Services = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-cleaning-primary hover:text-cleaning-accent"
             >
-              <WhatsappIcon className="h-5 w-5" />
+              <MessageCircle className="h-5 w-5" />
               <span>09168078539</span>
             </a>
           </div>
@@ -156,22 +186,7 @@ const Services = () => {
 };
 
 interface ServiceProps {
-  service: {
-    id: number;
-    title: string;
-    description: string;
-    icon: JSX.Element;
-    features: string[];
-    pricing?: Array<{property: string; price: string}> | {
-      mainland: Array<{property: string; price: string}>;
-      island: Array<{property: string; price: string}>;
-    };
-    note?: string;
-    classicPricing?: string[];
-    classicNote?: string;
-    houseCleaning?: Array<{frequency: string; price: string}>;
-    houseNote?: string;
-  };
+  service: ServiceType;
 }
 
 const ServiceCard = ({ service }: ServiceProps) => {
@@ -205,7 +220,7 @@ const ServiceCard = ({ service }: ServiceProps) => {
         </div>
 
         {/* Pricing Table for New House Cleaning */}
-        {service.id === 1 && service.pricing && (
+        {service.id === 1 && service.pricing && Array.isArray(service.pricing) && (
           <div className="mt-4">
             <h4 className="font-semibold mb-2">POST CONSTRUCTION CLEANING - BASIC CLEANING ESTIMATE</h4>
             <div className="overflow-x-auto">
@@ -219,7 +234,7 @@ const ServiceCard = ({ service }: ServiceProps) => {
                 <TableBody>
                   {service.pricing.map((item, index) => (
                     <TableRow key={index}>
-                      <TableCell>{item.property}</TableCell>
+                      <TableCell>{'property' in item ? item.property : item.service}</TableCell>
                       <TableCell>{item.price}</TableCell>
                     </TableRow>
                   ))}
@@ -243,7 +258,7 @@ const ServiceCard = ({ service }: ServiceProps) => {
         )}
 
         {/* Pricing Table for Apartment Cleaning */}
-        {service.id === 2 && service.pricing && 'mainland' in service.pricing && (
+        {service.id === 2 && service.pricing && !Array.isArray(service.pricing) && (
           <div className="mt-4 space-y-6">
             <div>
               <h4 className="font-semibold mb-2">LAGOS MAINLAND</h4>
@@ -258,7 +273,7 @@ const ServiceCard = ({ service }: ServiceProps) => {
                   <TableBody>
                     {service.pricing.mainland.map((item, index) => (
                       <TableRow key={index}>
-                        <TableCell>{item.property}</TableCell>
+                        <TableCell>{'property' in item ? item.property : item.service}</TableCell>
                         <TableCell>{item.price}</TableCell>
                       </TableRow>
                     ))}
@@ -280,7 +295,7 @@ const ServiceCard = ({ service }: ServiceProps) => {
                   <TableBody>
                     {service.pricing.island.map((item, index) => (
                       <TableRow key={index}>
-                        <TableCell>{item.property}</TableCell>
+                        <TableCell>{'property' in item ? item.property : item.service}</TableCell>
                         <TableCell>{item.price}</TableCell>
                       </TableRow>
                     ))}
@@ -292,7 +307,7 @@ const ServiceCard = ({ service }: ServiceProps) => {
         )}
 
         {/* Pricing Table for Weekly Cleaning Services */}
-        {service.id === 5 && service.pricing && (
+        {service.id === 5 && service.pricing && Array.isArray(service.pricing) && (
           <div className="mt-4">
             <h4 className="font-semibold mb-2">OFFICE CLEANERS</h4>
             <div className="overflow-x-auto">
@@ -306,7 +321,7 @@ const ServiceCard = ({ service }: ServiceProps) => {
                 <TableBody>
                   {service.pricing.map((item, index) => (
                     <TableRow key={index}>
-                      <TableCell>{item.service}</TableCell>
+                      <TableCell>{'property' in item ? item.property : item.service}</TableCell>
                       <TableCell>{item.price}</TableCell>
                     </TableRow>
                   ))}
@@ -359,7 +374,7 @@ const ServiceCard = ({ service }: ServiceProps) => {
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-cleaning-primary hover:text-cleaning-accent"
         >
-          <WhatsappIcon className="h-5 w-5" />
+          <MessageCircle className="h-5 w-5" />
           <span>Contact via WhatsApp</span>
         </a>
       </CardFooter>

@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Brush as BroomIcon, WhatsappIcon } from 'lucide-react';
+import { Brush as BroomIcon, MessageCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
@@ -54,7 +54,20 @@ const Navbar = () => {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-cleaning-primary hover:text-cleaning-accent"
             >
-              <WhatsappIcon className="h-5 w-5" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-message-circle"
+              >
+                <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>
+              </svg>
               <span>09027507279</span>
             </a>
             <Button className="gradient-bg">Get a Quote</Button>
@@ -72,7 +85,7 @@ const Navbar = () => {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-cleaning-primary hover:text-cleaning-accent mt-3"
           >
-            <WhatsappIcon className="h-5 w-5" />
+            <MessageCircle className="h-5 w-5" />
             <span>WhatsApp: 09027507279</span>
           </a>
           <Button className="gradient-bg w-full mt-4">Get a Quote</Button>
