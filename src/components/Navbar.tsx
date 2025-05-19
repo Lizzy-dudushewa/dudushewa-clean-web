@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Broom as BroomIcon } from 'lucide-react';
+import { Brush as BroomIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {

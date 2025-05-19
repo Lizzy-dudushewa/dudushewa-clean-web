@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Broom as BroomIcon, Home as House, Bed, Kitchen as KitchenIcon, Archive } from "lucide-react";
+import { Brush as BroomIcon, Home as House, Bed, UtensilsCrossed as KitchenIcon, Archive } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const servicesList = [
@@ -23,7 +23,7 @@ const servicesList = [
     id: 3,
     title: "Kitchen Cleaning",
     description: "Specialized cleaning for the heart of your home, focusing on appliances, surfaces, and organization.",
-    icon: <Kitchen className="h-8 w-8" />,
+    icon: <KitchenIcon className="h-8 w-8" />,
     features: ["Appliance cleaning", "Cabinet organization", "Counter sanitizing", "Floor deep cleaning"],
   },
   {
@@ -37,7 +37,7 @@ const servicesList = [
     id: 5,
     title: "Weekly Cleaning Services",
     description: "Regular cleaning schedules with discounted rates and priority scheduling.",
-    icon: <Broom className="h-8 w-8" />,
+    icon: <BroomIcon className="h-8 w-8" />,
     features: ["Regular maintenance", "Custom frequency options", "Consistent cleaning team", "Flexible scheduling"],
   },
 ];

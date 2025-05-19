@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Broom as BroomIcon } from "lucide-react";
+import { Brush as BroomIcon } from 'lucide-react';
 import { Separator } from "@/components/ui/separator";
 
 const Footer = () => {
