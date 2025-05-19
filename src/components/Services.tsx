@@ -1,7 +1,7 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Broom, House, Bed, Kitchen, Archive } from "lucide-react";
+import { Broom as BroomIcon, Home as House, Bed, Kitchen as KitchenIcon, Archive } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const servicesList = [

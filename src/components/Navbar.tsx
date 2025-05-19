@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Broom } from 'lucide-react';
+import { Broom as BroomIcon } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
@@ -15,7 +15,7 @@ const Navbar = () => {
     <nav className="bg-white shadow-sm fixed w-full z-50">
       <div className="max-width flex justify-between items-center py-4">
         <a href="/" className="flex items-center space-x-2">
-          <Broom size={28} className="text-cleaning-primary" />
+          <BroomIcon size={28} className="text-cleaning-primary" />
           <span className="font-inter font-bold text-xl">Dudushewa Cleaning</span>
         </a>
 
