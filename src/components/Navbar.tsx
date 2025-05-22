@@ -1,8 +1,18 @@
 
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Brush as BroomIcon, MessageCircle } from 'lucide-react';
+import { Brush as BroomIcon, MessageCircle, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { 
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle
+} from "@/components/ui/navigation-menu";
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,10 +24,10 @@ const Navbar = () => {
   return (
     <nav className="bg-white shadow-sm fixed w-full z-50">
       <div className="max-width flex justify-between items-center py-4">
-        <a href="/" className="flex items-center space-x-2">
+        <Link to="/" className="flex items-center space-x-2">
           <BroomIcon size={28} className="text-cleaning-primary" />
           <span className="font-inter font-bold text-xl">Dudushewa Cleaning</span>
-        </a>
+        </Link>
 
         {/* Mobile menu button */}
         <div className="md:hidden">
@@ -46,7 +56,59 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center space-x-6">
-          <NavLinks className="flex space-x-6" />
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem>
+                <Link to="/#services" className={navigationMenuTriggerStyle()}>Services</Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link to="/#about" className={navigationMenuTriggerStyle()}>About</Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link to="/pricing" className={navigationMenuTriggerStyle()}>Pricing</Link>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuTrigger>More</NavigationMenuTrigger>
+                <NavigationMenuContent>
+                  <ul className="grid w-[200px] gap-3 p-4">
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link to="/service-area" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium">Service Areas</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            See where we provide our services
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link to="/blog" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium">Blog</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            Cleaning tips and industry insights
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                    <li>
+                      <NavigationMenuLink asChild>
+                        <Link to="/#testimonials" className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                          <div className="text-sm font-medium">Testimonials</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                            See what our customers say
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                  </ul>
+                </NavigationMenuContent>
+              </NavigationMenuItem>
+              <NavigationMenuItem>
+                <Link to="/#contact" className={navigationMenuTriggerStyle()}>Contact</Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
           <div className="flex items-center gap-4">
             <a 
               href="https://wa.me/2349027507279" 
@@ -78,7 +140,13 @@ const Navbar = () => {
       {/* Mobile Nav */}
       <div className={cn("md:hidden", isOpen ? "block" : "hidden")}>
         <div className="px-4 pt-2 pb-4 space-y-1 bg-white shadow-md">
-          <NavLinks className="flex flex-col space-y-2" />
+          <Link to="/#services" className="block py-2 text-gray-700 hover:text-cleaning-primary font-medium">Services</Link>
+          <Link to="/#about" className="block py-2 text-gray-700 hover:text-cleaning-primary font-medium">About</Link>
+          <Link to="/pricing" className="block py-2 text-gray-700 hover:text-cleaning-primary font-medium">Pricing</Link>
+          <Link to="/service-area" className="block py-2 text-gray-700 hover:text-cleaning-primary font-medium">Service Areas</Link>
+          <Link to="/blog" className="block py-2 text-gray-700 hover:text-cleaning-primary font-medium">Blog</Link>
+          <Link to="/#testimonials" className="block py-2 text-gray-700 hover:text-cleaning-primary font-medium">Testimonials</Link>
+          <Link to="/#contact" className="block py-2 text-gray-700 hover:text-cleaning-primary font-medium">Contact</Link>
           <a 
             href="https://wa.me/2349027507279" 
             target="_blank" 
@@ -92,17 +160,6 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  );
-};
-
-const NavLinks = ({ className }: { className?: string }) => {
-  return (
-    <div className={className}>
-      <a href="#services" className="text-gray-700 hover:text-cleaning-primary font-medium">Services</a>
-      <a href="#about" className="text-gray-700 hover:text-cleaning-primary font-medium">About</a>
-      <a href="#testimonials" className="text-gray-700 hover:text-cleaning-primary font-medium">Testimonials</a>
-      <a href="#contact" className="text-gray-700 hover:text-cleaning-primary font-medium">Contact</a>
-    </div>
   );
 };
 
