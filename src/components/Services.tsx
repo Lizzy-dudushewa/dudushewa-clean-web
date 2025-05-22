@@ -1,9 +1,14 @@
-
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Brush as BroomIcon, Home as House, Bed, UtensilsCrossed as KitchenIcon, Archive, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 // Define type for pricing property to handle both formats
 type PricingItem = {
@@ -218,156 +223,162 @@ const ServiceCard = ({ service }: ServiceProps) => {
             ))}
           </ul>
         </div>
-
-        {/* Pricing Table for New House Cleaning */}
-        {service.id === 1 && service.pricing && Array.isArray(service.pricing) && (
-          <div className="mt-4">
-            <h4 className="font-semibold mb-2">POST CONSTRUCTION CLEANING - BASIC CLEANING ESTIMATE</h4>
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Property Type</TableHead>
-                    <TableHead>Price</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {service.pricing.map((item, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{'property' in item ? item.property : item.service}</TableCell>
-                      <TableCell>{item.price}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-            {service.note && <p className="text-sm mt-2 text-gray-500">{service.note}</p>}
-            
-            {service.classicPricing && (
-              <div className="mt-6">
-                <h4 className="font-semibold mb-2">CLASSIC CLEANING ESTIMATE</h4>
-                <ul className="list-disc pl-5 space-y-1">
-                  {service.classicPricing.map((item, index) => (
-                    <li key={index} className="text-sm">{item}</li>
-                  ))}
-                </ul>
-                {service.classicNote && <p className="text-sm mt-2 text-gray-500">{service.classicNote}</p>}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Pricing Table for Apartment Cleaning */}
-        {service.id === 2 && service.pricing && !Array.isArray(service.pricing) && (
-          <div className="mt-4 space-y-6">
-            <div>
-              <h4 className="font-semibold mb-2">LAGOS MAINLAND</h4>
-              <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Property Type</TableHead>
-                      <TableHead>Price</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {service.pricing.mainland.map((item, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{'property' in item ? item.property : item.service}</TableCell>
-                        <TableCell>{item.price}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-            </div>
-            
-            <div>
-              <h4 className="font-semibold mb-2">LAGOS ISLAND / LEKKI / AJAH</h4>
-              <div className="overflow-x-auto">
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead>Property Type</TableHead>
-                      <TableHead>Price</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    {service.pricing.island.map((item, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{'property' in item ? item.property : item.service}</TableCell>
-                        <TableCell>{item.price}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Pricing Table for Weekly Cleaning Services */}
-        {service.id === 5 && service.pricing && Array.isArray(service.pricing) && (
-          <div className="mt-4">
-            <h4 className="font-semibold mb-2">OFFICE CLEANERS</h4>
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>Service</TableHead>
-                    <TableHead>Price</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {service.pricing.map((item, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{'property' in item ? item.property : item.service}</TableCell>
-                      <TableCell>{item.price}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </div>
-            {service.note && <p className="text-sm mt-2 text-gray-500">{service.note}</p>}
-            
-            {service.houseCleaning && (
-              <div className="mt-6">
-                <h4 className="font-semibold mb-2">WEEKLY HOUSE CLEANING PER CLEANER</h4>
-                <div className="overflow-x-auto">
-                  <Table>
-                    <TableHeader>
-                      <TableRow>
-                        <TableHead>Frequency</TableHead>
-                        <TableHead>Price</TableHead>
-                      </TableRow>
-                    </TableHeader>
-                    <TableBody>
-                      {service.houseCleaning.map((item, index) => (
-                        <TableRow key={index}>
-                          <TableCell>{item.frequency}</TableCell>
-                          <TableCell>{item.price}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </div>
-                {service.houseNote && <p className="text-sm mt-2 text-gray-500">{service.houseNote}</p>}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* Note for Kitchen Cleaning and Pack-in/Pack-out Cleaning */}
-        {(service.id === 3 || service.id === 4) && service.note && (
-          <div className="mt-4">
-            <p className="text-sm text-gray-500">{service.note}</p>
-          </div>
-        )}
       </CardContent>
       <CardFooter className="flex flex-col items-start gap-3">
-        <Button variant="ghost" className="w-full text-cleaning-primary hover:text-cleaning-accent">
-          Learn More
-        </Button>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="pricing">
+            <AccordionTrigger className="text-cleaning-primary hover:text-cleaning-accent hover:no-underline">
+              Learn More
+            </AccordionTrigger>
+            <AccordionContent>
+              {/* Pricing Table for New House Cleaning */}
+              {service.id === 1 && service.pricing && Array.isArray(service.pricing) && (
+                <div className="mt-4">
+                  <h4 className="font-semibold mb-2">POST CONSTRUCTION CLEANING - BASIC CLEANING ESTIMATE</h4>
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Property Type</TableHead>
+                          <TableHead>Price</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {service.pricing.map((item, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{'property' in item ? item.property : item.service}</TableCell>
+                            <TableCell>{item.price}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                  {service.note && <p className="text-sm mt-2 text-gray-500">{service.note}</p>}
+                  
+                  {service.classicPricing && (
+                    <div className="mt-6">
+                      <h4 className="font-semibold mb-2">CLASSIC CLEANING ESTIMATE</h4>
+                      <ul className="list-disc pl-5 space-y-1">
+                        {service.classicPricing.map((item, index) => (
+                          <li key={index} className="text-sm">{item}</li>
+                        ))}
+                      </ul>
+                      {service.classicNote && <p className="text-sm mt-2 text-gray-500">{service.classicNote}</p>}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Pricing Table for Apartment Cleaning */}
+              {service.id === 2 && service.pricing && !Array.isArray(service.pricing) && (
+                <div className="mt-4 space-y-6">
+                  <div>
+                    <h4 className="font-semibold mb-2">LAGOS MAINLAND</h4>
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Property Type</TableHead>
+                            <TableHead>Price</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {service.pricing.mainland.map((item, index) => (
+                            <TableRow key={index}>
+                              <TableCell>{'property' in item ? item.property : item.service}</TableCell>
+                              <TableCell>{item.price}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold mb-2">LAGOS ISLAND / LEKKI / AJAH</h4>
+                    <div className="overflow-x-auto">
+                      <Table>
+                        <TableHeader>
+                          <TableRow>
+                            <TableHead>Property Type</TableHead>
+                            <TableHead>Price</TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {service.pricing.island.map((item, index) => (
+                            <TableRow key={index}>
+                              <TableCell>{'property' in item ? item.property : item.service}</TableCell>
+                              <TableCell>{item.price}</TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Pricing Table for Weekly Cleaning Services */}
+              {service.id === 5 && service.pricing && Array.isArray(service.pricing) && (
+                <div className="mt-4">
+                  <h4 className="font-semibold mb-2">OFFICE CLEANERS</h4>
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Service</TableHead>
+                          <TableHead>Price</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {service.pricing.map((item, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{'property' in item ? item.property : item.service}</TableCell>
+                            <TableCell>{item.price}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                  {service.note && <p className="text-sm mt-2 text-gray-500">{service.note}</p>}
+                  
+                  {service.houseCleaning && (
+                    <div className="mt-6">
+                      <h4 className="font-semibold mb-2">WEEKLY HOUSE CLEANING PER CLEANER</h4>
+                      <div className="overflow-x-auto">
+                        <Table>
+                          <TableHeader>
+                            <TableRow>
+                              <TableHead>Frequency</TableHead>
+                              <TableHead>Price</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {service.houseCleaning.map((item, index) => (
+                              <TableRow key={index}>
+                                <TableCell>{item.frequency}</TableCell>
+                                <TableCell>{item.price}</TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>
+                      </div>
+                      {service.houseNote && <p className="text-sm mt-2 text-gray-500">{service.houseNote}</p>}
+                    </div>
+                  )}
+                </div>
+              )}
+
+              {/* Note for Kitchen Cleaning and Pack-in/Pack-out Cleaning */}
+              {(service.id === 3 || service.id === 4) && service.note && (
+                <div className="mt-4">
+                  <p className="text-sm text-gray-500">{service.note}</p>
+                </div>
+              )}
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        
         <a 
           href="https://wa.me/2349027507279" 
           target="_blank" 

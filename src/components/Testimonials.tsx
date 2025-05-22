@@ -4,45 +4,51 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { 
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const testimonials = [
   {
     id: 1,
-    name: "Jennifer Wilson",
+    name: "Chioma Okafor",
     role: "Homeowner",
-    image: "https://randomuser.me/api/portraits/women/12.jpg",
+    image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
     content: "Dudushewa Cleaning Service has transformed my home! Their attention to detail is exceptional. I've been using their bi-weekly service for over a year, and my house has never looked better.",
     rating: 5
   },
   {
     id: 2,
-    name: "Michael Thompson",
+    name: "Oluwaseun Adeyemi",
     role: "Office Manager",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    image: "https://images.unsplash.com/photo-1539701938214-0d9736e1c16b?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
     content: "We hired Dudushewa for our office cleaning needs, and they've exceeded our expectations. The team is professional, reliable, and thorough. Our workspace feels fresh and welcoming every day.",
     rating: 5
   },
   {
     id: 3,
-    name: "Sophia Rodriguez",
+    name: "Amaka Nwosu",
     role: "Property Manager",
-    image: "https://randomuser.me/api/portraits/women/23.jpg",
+    image: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
     content: "Managing multiple properties requires dependable vendors. Dudushewa has proven to be our most reliable cleaning service. Their move-in/move-out cleanings are particularly outstanding.",
     rating: 5
   },
   {
     id: 4,
-    name: "David Chen",
+    name: "Tunde Bakare",
     role: "Restaurant Owner",
-    image: "https://randomuser.me/api/portraits/men/45.jpg",
+    image: "https://images.unsplash.com/photo-1506634572416-48cdfe530110?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
     content: "Keeping our restaurant spotless is critical to our success. Dudushewa understands the unique needs of food service businesses and delivers consistent, excellent results. Highly recommended!",
     rating: 5
   },
   {
     id: 5,
-    name: "Emma Johnson",
+    name: "Folake Adeleke",
     role: "Homeowner",
-    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
     content: "After trying several cleaning services, I finally found Dudushewa. The difference is night and day! They're thorough, consistent, and respectful of my home and belongings.",
     rating: 5
   }
