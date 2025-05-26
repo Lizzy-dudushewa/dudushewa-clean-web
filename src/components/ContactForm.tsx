@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
@@ -91,6 +92,12 @@ const ContactForm = () => {
               <h3 className="text-xl font-bold mb-6">Contact Information</h3>
               
               <div className="space-y-6">
+                <ContactInfo 
+                  icon={<MapPin size={20} />}
+                  title="Address"
+                  details={["21, Olubi Street", "Ikorodu, Lagos"]}
+                />
+                
                 <ContactInfo 
                   icon={<Phone size={20} />}
                   title="Phone"
