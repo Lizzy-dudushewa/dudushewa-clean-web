@@ -43,7 +43,8 @@ const ServiceArea = () => {
                       {[
                         "Ikeja", "Victoria Island", "Lekki", "Ikoyi", "Ajah",
                         "Surulere", "Yaba", "Maryland", "Gbagada", "Magodo",
-                        "Ogudu", "Omole", "Ojodu", "Ogba", "Agege"
+                        "Ogudu", "Omole", "Ojodu", "Ogba", "Agege", "Ikorodu",
+                        "Ketu", "Ojodu-Berger", "Ibeju-Lekki", "Ogun State and its environs"
                       ].map((area) => (
                         <li key={area} className="flex items-center">
                           <MapPin className="h-5 w-5 text-cleaning-primary mr-2" />
